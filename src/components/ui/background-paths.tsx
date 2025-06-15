@@ -81,8 +81,8 @@ export function BackgroundPaths({
                                 {word.split("").map((letter, letterIndex) => (
                                     <motion.span
                                         key={`${wordIndex}-${letterIndex}`}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
+                                        initial={{ opacity: 0, scale: 0.8, filter: "blur(8px)" }}
+                                        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                                         transition={{
                                             delay:
                                                 wordIndex * 0.2 +
