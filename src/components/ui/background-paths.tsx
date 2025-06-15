@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -84,9 +85,9 @@ export function BackgroundPaths({
                                         animate={{ opacity: 1 }}
                                         transition={{
                                             delay:
-                                                wordIndex * 0.1 +
-                                                letterIndex * 0.05,
-                                            duration: 0.8,
+                                                wordIndex * 0.2 +
+                                                letterIndex * 0.1,
+                                            duration: 1.5,
                                         }}
                                         className="inline-block text-transparent bg-clip-text 
                                         bg-gradient-to-r from-white to-white/80 
