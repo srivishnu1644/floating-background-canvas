@@ -69,17 +69,21 @@ export function WelcomeVideo({ onComplete }: { onComplete: () => void }) {
             } else {
                 onComplete();
             }
-        }, 1000);
+        }, 1700); // 12 seconds / 7 texts ≈ 1.7 seconds per text
 
         return () => clearTimeout(timer);
     }, [currentText, onComplete, texts.length]);
 
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black dark:bg-black">
-            <div className="absolute inset-0">
+            {/* Blurred background */}
+            <div className="absolute inset-0 blur-sm">
                 <FloatingPaths position={1} />
                 <FloatingPaths position={-1} />
             </div>
+
+            {/* Sharp overlay for better text visibility */}
+            <div className="absolute inset-0 bg-black/20"></div>
 
             <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">
                 <motion.div
@@ -92,24 +96,30 @@ export function WelcomeVideo({ onComplete }: { onComplete: () => void }) {
                         key={currentText}
                         initial={{ 
                             opacity: 0, 
-                            scale: 0.8, 
-                            filter: "blur(8px)" 
+                            scale: 0.5, 
+                            filter: "blur(20px)",
+                            y: 50
                         }}
                         animate={{ 
                             opacity: 1, 
                             scale: 1, 
-                            filter: "blur(0px)" 
+                            filter: "blur(0px)",
+                            y: 0
                         }}
                         exit={{ 
                             opacity: 0, 
-                            scale: 1.2, 
-                            filter: "blur(8px)" 
+                            scale: 0.8, 
+                            filter: "blur(10px)",
+                            y: -30
                         }}
                         transition={{ 
-                            duration: 0.5,
-                            ease: "easeOut"
+                            duration: 0.8,
+                            ease: [0.25, 0.46, 0.45, 0.94],
+                            type: "spring",
+                            stiffness: 100,
+                            damping: 15
                         }}
-                        className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/80 dark:from-white dark:to-white/80"
+                        className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-white/80 dark:from-white dark:to-white/80 drop-shadow-2xl"
                     >
                         {texts[currentText]}
                     </motion.h1>
