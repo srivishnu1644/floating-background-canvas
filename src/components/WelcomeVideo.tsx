@@ -59,7 +59,21 @@ export function WelcomeVideo({ onComplete }: { onComplete: () => void }) {
         "LIKE NEVER BEFORE",
         "BECAUSE",
         "WE DO IT IN",
-        "THE VIGORS WAY"
+        "THE VIGORS WAY",
+        "BECAUSE WE BELIEVE IN",
+        "MINDSET IS A STATEMENT OF SUCCESS"
+    ];
+
+    const durations = [
+        1700, // WELCOME - 1.7s
+        1700, // TO THE VIGORS CLUB - 1.7s
+        1700, // EXPERIENCE YOUR FITNESS WORLD - 1.7s
+        1700, // LIKE NEVER BEFORE - 1.7s
+        1700, // BECAUSE - 1.7s
+        1700, // WE DO IT IN - 1.7s
+        1700, // THE VIGORS WAY - 1.7s
+        1500, // BECAUSE WE BELIEVE IN - 1.5s
+        3000  // MINDSET IS A STATEMENT OF SUCCESS - 3s
     ];
 
     useEffect(() => {
@@ -69,10 +83,10 @@ export function WelcomeVideo({ onComplete }: { onComplete: () => void }) {
             } else {
                 onComplete();
             }
-        }, 1700); // 12 seconds / 7 texts ≈ 1.7 seconds per text
+        }, durations[currentText]);
 
         return () => clearTimeout(timer);
-    }, [currentText, onComplete, texts.length]);
+    }, [currentText, onComplete, texts.length, durations]);
 
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black dark:bg-black">
