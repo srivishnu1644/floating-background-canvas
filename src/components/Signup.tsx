@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -51,14 +52,14 @@ function FloatingPaths({ position }: { position: number }) {
     );
 }
 
-export function Login({ onBack, onSignUp, onLogin }: { 
+export function Signup({ onBack, onSignIn, onSignUp }: { 
     onBack: () => void; 
+    onSignIn: () => void;
     onSignUp: () => void;
-    onLogin: () => void;
 }) {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        onLogin();
+        onSignUp();
     };
 
     return (
@@ -85,10 +86,20 @@ export function Login({ onBack, onSignUp, onLogin }: {
                             >
                                 <ArrowLeft className="h-5 w-5" />
                             </Button>
-                            <h2 className="text-2xl font-bold text-white">Welcome</h2>
+                            <h2 className="text-2xl font-bold text-white">Join The Club</h2>
                         </div>
 
                         <form onSubmit={handleSubmit} className="space-y-6">
+                            <div className="space-y-2">
+                                <Label htmlFor="fullName" className="text-white">Full Name</Label>
+                                <Input
+                                    id="fullName"
+                                    type="text"
+                                    placeholder="Enter your full name"
+                                    className="bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:border-white/40"
+                                />
+                            </div>
+
                             <div className="space-y-2">
                                 <Label htmlFor="email" className="text-white">Email</Label>
                                 <Input
@@ -104,7 +115,17 @@ export function Login({ onBack, onSignUp, onLogin }: {
                                 <Input
                                     id="password"
                                     type="password"
-                                    placeholder="Enter your password"
+                                    placeholder="Create a password"
+                                    className="bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:border-white/40"
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="confirmPassword" className="text-white">Confirm Password</Label>
+                                <Input
+                                    id="confirmPassword"
+                                    type="password"
+                                    placeholder="Confirm your password"
                                     className="bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:border-white/40"
                                 />
                             </div>
@@ -113,15 +134,15 @@ export function Login({ onBack, onSignUp, onLogin }: {
                                 type="submit"
                                 className="w-full bg-white/95 hover:bg-white text-black font-semibold py-3"
                             >
-                                Sign In
+                                Create Account
                             </Button>
                         </form>
 
                         <div className="mt-6 text-center">
                             <p className="text-white/60">
-                                Don't have an account?{" "}
-                                <button onClick={onSignUp} className="text-white hover:underline">
-                                    Sign up
+                                Already have an account?{" "}
+                                <button onClick={onSignIn} className="text-white hover:underline">
+                                    Sign in
                                 </button>
                             </p>
                         </div>
