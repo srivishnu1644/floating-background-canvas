@@ -53,8 +53,10 @@ function FloatingPaths({ position }: { position: number }) {
 
 export function BackgroundPaths({
     title = "Background Paths",
+    onDiscoverClick,
 }: {
     title?: string;
+    onDiscoverClick?: () => void;
 }) {
     const words = title.split(" ");
 
@@ -85,9 +87,9 @@ export function BackgroundPaths({
                                         animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                                         transition={{
                                             delay:
-                                                wordIndex * 0.2 +
-                                                letterIndex * 0.1,
-                                            duration: 1.5,
+                                                wordIndex * 0.5 +
+                                                letterIndex * 0.15,
+                                            duration: 2,
                                         }}
                                         className="inline-block text-transparent bg-clip-text 
                                         bg-gradient-to-r from-white to-white/80 
@@ -107,6 +109,7 @@ export function BackgroundPaths({
                     >
                         <Button
                             variant="ghost"
+                            onClick={onDiscoverClick}
                             className="rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md 
                             bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
                             text-black dark:text-white transition-all duration-300 
